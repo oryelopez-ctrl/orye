@@ -69,4 +69,14 @@ li:hover {
 /* Animación al hacer hover */
 .btn:hover {
   transform: rotate(20deg) scale(1.1);
+
+}
+
+#msg {
+  font-size: 28px;               /* Tamaño del texto */
+  color: #2ecc71;                /* Verde vibrante */
+  font-weight: bold;             /* Negrita */
+  font-family: 'Segoe UI', sans-serif;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2); /* Sombra suave */
+  margin-top: 20px;
 }
