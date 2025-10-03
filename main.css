@@ -1,0 +1,72 @@
+/* VARIABLES GENERALES */
+:root {
+  --transition: all 0.5s ease; /* transiciones suaves */
+}
+
+/* Tema claro */
+.light-theme {
+  --bg: #f0f8ff;
+  --fontColor: #222;
+  --btnBg: #fff;
+  --btnFontColor: #222;
+}
+
+/* Tema oscuro */
+.dark-theme {
+  --bg: #1e1e2f;
+  --fontColor: #f0f0f0;
+  --btnBg: #333;
+  --btnFontColor: #f0f0f0;
+}
+
+/* Estilos del body */
+body {
+  background: var(--bg);
+  color: var(--fontColor);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 20px;
+  transition: var(--transition); /* Animación cambio tema */
+}
+
+/* Lista */
+ul {
+  padding: 0;
+}
+li {
+  list-style: none;
+  margin: 8px 0;
+  padding: 10px;
+  background: rgba(0,0,0,0.05);
+  border-radius: 8px;
+  transition: var(--transition);
+}
+li:hover {
+  transform: scale(1.05);
+  background: rgba(0,0,0,0.1); /* efecto hover */
+}
+
+/* Botón */
+.theme-switcher {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.btn {
+  font-size: 2rem; /* Emoji grande */
+  background: var(--btnBg);
+  color: var(--btnFontColor);
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+  transition: var(--transition);
+}
+
+/* Animación al hacer hover */
+.btn:hover {
+  transform: rotate(20deg) scale(1.1);
+}
