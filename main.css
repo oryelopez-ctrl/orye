@@ -72,6 +72,33 @@ li:hover {
 
 }
 
+/* Estilos necesarios para el efecto de seguimiento */
+.eye-container {
+    /* Define la zona donde el ojo puede moverse (si quieres limitar) */
+    position: relative; 
+    width: Xpx; /* Ajusta el ancho */
+    height: Ypx; /* Ajusta la altura */
+}
+
+.eye {
+    /* El elemento que representa el iris o pupila */
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: black;
+    
+    /* ESTO ES LO MÁS IMPORTANTE: */
+    /* Asegura que el ojo rote desde el centro o desde un punto específico */
+    transform-origin: center center;
+    
+    /* Configuración inicial, si es necesario */
+    transition: transform 0s; /* No queremos transición, queremos que siga al cursor instantáneamente */
+}
+
+/* Puedes añadir más estilos para que se parezca a un muñeco */
+
+
 #msg {
   font-size: 28px;               /* Tamaño del texto */
   color: #2ecc71;                /* Verde vibrante */
@@ -80,3 +107,4 @@ li:hover {
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2); /* Sombra suave */
   margin-top: 20px;
 }
+
