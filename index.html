@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta http‑equiv="X‑UA‑Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device‑width, initial‑scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tienda</title>
-  <link rel="stylesheet" href="main.css">
-  <link rel="icon" type="image/jpg" href="basque.jpg">
+  <link rel="stylesheet" href="main.css" />
+  <link rel="icon" type="image/jpg" href="basque.jpg" />
 </head>
 <body class="light-theme">
   <h1 style="font-size: 60px;">TIENDA</h1>
@@ -23,13 +23,13 @@
     <p>Explora nuestra colección:</p>
     <div id="catalogo-perfumes" class="catalogo">
       <div class="producto" onclick="abrirModal('empire-woman')">
-        <img src="├── img/ew.png" alt="Empire Woman">
+        <img src="img/ew.png" alt="Empire Woman" />
         <h3>Empire Woman</h3>
         <p>Notas de framboesa, bergamota, jazmín y praliné.</p>
         <span class="precio">R$ 199,90</span>
       </div>
       <div class="producto" onclick="abrirModal('rebelle')">
-        <img src="img/mn.png" alt="Rebelle">
+        <img src="img/mn.png" alt="Rebelle" />
         <h3>Rebelle</h3>
         <p>Un aroma misterioso con toques de orquídea y rosa.</p>
         <span class="precio">R$ 174,90</span>
@@ -49,21 +49,34 @@
   </div>
 
   <div class="theme-switcher">
-    <button class="btn">🌙</button>
+    <button class="btn" onclick="toggleTheme()">🌙</button>
   </div>
 
-  <!-- CAPIBARA -->
-  <div class="character">
-    <img id="capybara-body" src="img/capybara‑neutral.png" alt="Capibara" />
-    <div class="eye left-eye"></div>
-    <div class="eye right-eye"></div>
+  <!-- CAPIBARA sin imágenes -->
+  <div class="character neutral" id="capibara">
+    <div class="body">
+      <div class="ear left"></div>
+      <div class="ear right"></div>
+      <div class="face">
+        <div class="eye left-eye">
+          <div class="pupil"></div>
+        </div>
+        <div class="eye right-eye">
+          <div class="pupil"></div>
+        </div>
+        <div class="nose"></div>
+        <div class="mouth"></div>
+      </div>
+    </div>
+    <div class="shirt"></div>
+    <div class="spray"></div>
   </div>
 
   <!-- Modal de producto -->
   <div id="modalProducto" class="modal" style="display: none;">
     <div class="modal-contenido">
       <span class="cerrar" onclick="cerrarModal()">&times;</span>
-      <img id="modalImagen" src="" alt="">
+      <img id="modalImagen" src="" alt="" />
       <div class="modalDetalles">
         <h3 id="modalTitulo"></h3>
         <p id="modalDescripcion"></p>
@@ -76,8 +89,6 @@
   <script src="app.js"></script>
 </body>
 </html>
-
-
 
 
 
