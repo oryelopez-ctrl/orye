@@ -1,99 +1,119 @@
-'use strict';
+const capybara = document.getElementById("capibara");
+const leftPupil = capybara.querySelector(".left-eye .pupil");
+const rightPupil = capybara.querySelector(".right-eye .pupil");
 
-// CAMBIO DE TEMA
-const switcher = document.querySelector('.btn');
-switcher.addEventListener('click', function () {
-  document.body.classList.toggle('dark-theme');
-  let className = document.body.className;
-  this.textContent = className === "light-theme" ? "🌙" : "🌞";
-});
-
-// MOSTRAR SECCIONES
-function mostrarSeccion(id) {
-  document.querySelectorAll('.seccion').forEach(sec => {
-    sec.style.display = 'none';
-  });
-  document.getElementById(id).style.display = 'block';
-
-  // Cambiar estado capibara según sección
-  const character = document.querySelector('.character');
-  character.classList.remove('state-spray', 'state-shirt', 'state-happy');
-  if (id === 'perfumes') {
-    // cambia a modo “echando perfume”
-    character.classList.add('state-spray');
-  } else if (id === 'camisetas') {
-    // modo “poniéndose camiseta”
-    character.classList.add('state-shirt');
-  } else {
-    // sección contacto u otra → feliz
-    character.classList.add('state-happy');
-  }
-
-  // después de un tiempo revertir a estado neutral
-  setTimeout(() => {
-    character.classList.remove('state-spray', 'state-shirt', 'state-happy');
-  }, 3000);
-}
-
-// OJOS SIGUEN CURSOR
-const eyes = document.querySelectorAll('.eye');
-function calculateAngle(cx, cy, mx, my) {
-  const dx = mx - cx;
-  const dy = my - cy;
-  return Math.atan2(dy, dx);
-}
-function moveEyes(x, y) {
-  eyes.forEach(eye => {
-    const rect = eye.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    const angle = calculateAngle(cx, cy, x, y);
-    const radius = 4;
-    const moveX = Math.cos(angle) * radius;
-    const moveY = Math.sin(angle) * radius;
-    eye.style.transform = `translate(${moveX}px, ${moveY}px)`;
-  });
-}
-document.addEventListener('mousemove', e => {
-  moveEyes(e.clientX, e.clientY);
-});
-document.addEventListener('touchmove', e => {
-  if (e.touches.length > 0) {
-    moveEyes(e.touches[0].clientX, e.touches[0].clientY);
-  }
-});
-
-// DATOS PRODUCTOS Y MODAL
+// Datos de productos para el modal
 const productos = {
   "empire-woman": {
-    imagen: "img/ew.png",
     titulo: "Empire Woman",
     descripcion: "Notas de framboesa, bergamota, jazmín y praliné.",
     precio: "R$ 199,90",
-    enlace: "https://shopee.com/tu‑producto‑empire‑woman"
+    imagen: "img/ew.png",
+    link: "https://shopee.com/empire-woman" // Cambia a tu URL real
   },
   "rebelle": {
-    imagen: "img/mn.png",
     titulo: "Rebelle",
     descripcion: "Un aroma misterioso con toques de orquídea y rosa.",
     precio: "R$ 174,90",
-    enlace: "https://shopee.com/tu‑producto‑rebelle"
+    imagen: "img/mn.png",
+    link: "https://shopee.com/rebelle" // Cambia a tu URL real
   }
 };
 
-function abrirModal(key) {
-  const prod = productos[key];
-  if (!prod) return;
-  document.getElementById("modalImagen").src = prod.imagen;
-  document.getElementById("modalTitulo").textContent = prod.titulo;
-  document.getElementById("modalDescripcion").textContent = prod.descripcion;
-  document.getElementById("modalPrecio").textContent = prod.precio;
-  document.getElementById("modalLink").href = prod.enlace;
-  document.getElementById("modalLink").textContent = "Comprar en Shopee";
-  document.getElementById("modalProducto").style.display = "flex";
+document.addEventListener("mousemove", (e) => {
+  const rect = capybara.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+
+  const maxMove = 5; // Máximo movimiento de la pupila
+
+  let dx = e.clientX - centerX;
+  let dy = e.clientY - centerY;
+
+  if (dx > maxMove) dx = maxMove;
+  if (dx < -maxMove) dx = -maxMove;
+  if (dy > maxMove) dy = maxMove;
+  if (dy < -maxMove) dy = -maxMove;
+
+  leftPupil.style.transform = `translate(${dx}px, ${dy}px)`;
+  rightPupil.style.transform = `translate(${dx}px, ${dy}px)`;
+});
+
+// Función para cambiar el estado del capibara
+function setCapybaraState(state) {
+  capybara.classList.remove("neutral", "happy", "spray", "shirt");
+  capybara.classList.add(state);
 }
+
+// Función para mostrar secciones y cambiar estado del capibara
+function mostrarSeccion(seccion) {
+  // Ocultar todas las secciones
+  document.querySelectorAll(".seccion").forEach(s => s.style.display = "none");
+  // Mostrar la sección seleccionada
+  const sec = document.getElementById(seccion);
+  if (sec) sec.style.display = "block";
+
+  // Cambiar estado capibara según sección
+  if (seccion === "perfumes") {
+    setCapybaraState("happy");
+  } else if (seccion === "camisetas") {
+    setCapybaraState("shirt");
+  } else {
+    setCapybaraState("neutral");
+  }
+
+  cerrarModal(); // Cierra modal si está abierto
+}
+
+// Modal
+const modal = document.getElementById("modalProducto");
+const modalImagen = document.getElementById("modalImagen");
+const modalTitulo = document.getElementById("modalTitulo");
+const modalDescripcion = document.getElementById("modalDescripcion");
+const modalPrecio = document.getElementById("modalPrecio");
+const modalLink = document.getElementById("modalLink");
+
+function abrirModal(productoKey) {
+  const producto = productos[productoKey];
+  if (!producto) return;
+
+  modalImagen.src = producto.imagen;
+  modalImagen.alt = producto.titulo;
+  modalTitulo.textContent = producto.titulo;
+  modalDescripcion.textContent = producto.descripcion;
+  modalPrecio.textContent = producto.precio;
+  modalLink.href = producto.link;
+
+  modal.style.display = "flex";
+
+  // Cambia capibara a estado spray
+  setCapybaraState("spray");
+}
+
 function cerrarModal() {
-  document.getElementById("modalProducto").style.display = "none";
+  modal.style.display = "none";
+  // Volver a estado happy si estamos en perfumes, o neutral
+  const perfumesVisible = document.getElementById("perfumes").style.display === "block";
+  if (perfumesVisible) {
+    setCapybaraState("happy");
+  } else {
+    setCapybaraState("neutral");
+  }
 }
+
+// Tema (claro/oscuro)
+function toggleTheme() {
+  const body = document.body;
+  if (body.classList.contains("light-theme")) {
+    body.classList.replace("light-theme", "dark-theme");
+  } else {
+    body.classList.replace("dark-theme", "light-theme");
+  }
+}
+
+// Inicializa con estado neutro y muestra la sección de perfumes por defecto (opcional)
+mostrarSeccion('perfumes');
+
+
 
 
