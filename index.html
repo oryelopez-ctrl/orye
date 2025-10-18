@@ -1,95 +1,91 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tienda</title>
-  <link rel="stylesheet" href="main.css" />
-  <link rel="icon" type="image/jpg" href="basque.jpg" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tienda Capibara Animada</title>
+    <link rel="stylesheet" href="main.css" />
+    <link rel="icon" type="image/jpg" href="basque.jpg" />
 </head>
 <body class="light-theme">
-  <h1 style="font-size: 60px;">TIENDA</h1>
-  <p id="msg">Disponible:</p>
+    <h1 style="font-size: 60px;">TIENDA</h1>
+    <p id="msg">Disponible:</p>
 
-  <ul>
-    <li class="list" onclick="mostrarSeccion('perfumes')">Perfumes</li>
-    <li class="list" onclick="mostrarSeccion('camisetas')">Camisetas</li>
-    <li class="list" onclick="mostrarSeccion('contacto')">Contacto</li>
-  </ul>
+    <ul>
+        <li class="list" onclick="mostrarSeccion('perfumes')">Perfumes</li>
+        <li class="list" onclick="mostrarSeccion('camisetas')">Camisetas</li>
+        <li class="list" onclick="mostrarSeccion('contacto')">Contacto</li>
+    </ul>
 
-  <div id="perfumes" class="seccion" style="display:none;">
-    <h2>Perfumes</h2>
-    <p>Explora nuestra colección:</p>
-    <div id="catalogo-perfumes" class="catalogo">
-      <div class="producto" onclick="abrirModal('empire-woman')">
-        <img src="├── img/ew.png" alt="Empire Woman" />
-        <h3>Empire Woman</h3>
-        <p>Notas de framboesa, bergamota, jazmín y praliné.</p>
-        <span class="precio">R$ 199,90</span>
-      </div>
-      <div class="producto" onclick="abrirModal('rebelle')">
-        <img src="├── img/mn.png" alt="Rebelle" />
-        <h3>Rebelle</h3>
-        <p>Un aroma misterioso con toques de orquídea y rosa.</p>
-        <span class="precio">R$ 174,90</span>
-      </div>
-    </div>
-  </div>
-
-  <div id="camisetas" class="seccion" style="display:none;">
-    <h2>Camisetas</h2>
-    <p>Explora nuestras camisetas con diseños únicos.</p>
-    <!-- Podrías agregar productos de camisetas aquí -->
-  </div>
-
-  <div id="contacto" class="seccion" style="display:none;">
-    <h2>Contacto</h2>
-    <p>¿Tienes dudas? Contáctanos por correo o redes sociales.</p>
-  </div>
-
-  <div class="theme-switcher">
-    <button class="btn" onclick="toggleTheme()">🌙</button>
-  </div>
-
-  <!-- CAPIBARA sin imágenes -->
-  <div class="character neutral" id="capibara">
-    <div class="body">
-      <div class="ear left"></div>
-      <div class="ear right"></div>
-      <div class="face">
-        <div class="eye left-eye">
-          <div class="pupil"></div>
+    <div id="perfumes" class="seccion" style="display:none;">
+        <h2>Perfumes</h2>
+        <p>Explora nuestra colección:</p>
+        <div id="catalogo-perfumes" class="catalogo">
+            <div class="producto" onclick="abrirModal('empire-woman')">
+                <img src="img/ew.png" alt="Empire Woman" />
+                <h3>Empire Woman</h3>
+                <p>Notas de framboesa, bergamota, jazmín y praliné.</p>
+                <span class="precio">R$ 199,90</span>
+            </div>
+            <div class="producto" onclick="abrirModal('rebelle')">
+                <img src="img/mn.png" alt="Rebelle" />
+                <h3>Rebelle</h3>
+                <p>Un aroma misterioso con toques de orquídea y rosa.</p>
+                <span class="precio">R$ 174,90</span>
+            </div>
         </div>
-        <div class="eye right-eye">
-          <div class="pupil"></div>
+    </div>
+
+    <div id="camisetas" class="seccion" style="display:none;">
+        <h2>Camisetas</h2>
+        <p>Explora nuestras camisetas con diseños únicos.</p>
         </div>
-        <div class="nose"></div>
-        <div class="mouth"></div>
-      </div>
-    </div>
-    <div class="shirt"></div>
-    <div class="spray"></div>
-  </div>
 
-  <!-- Modal de producto -->
-  <div id="modalProducto" class="modal" style="display: none;">
-    <div class="modal-contenido">
-      <span class="cerrar" onclick="cerrarModal()">&times;</span>
-      <img id="modalImagen" src="" alt="" />
-      <div class="modalDetalles">
-        <h3 id="modalTitulo"></h3>
-        <p id="modalDescripcion"></p>
-        <span class="precio" id="modalPrecio"></span>
-        <p><a id="modalLink" href="#" target="_blank">Comprar en Shopee</a></p>
-      </div>
+    <div id="contacto" class="seccion" style="display:none;">
+        <h2>Contacto</h2>
+        <p>¿Tienes dudas? Contáctanos por correo o redes sociales.</p>
     </div>
-  </div>
 
-  <script src="app.js"></script>
+    <div class="theme-switcher">
+        <button class="btn">🌙</button> 
+    </div>
+
+    <div class="character" id="capibara">
+        <div class="body">
+            <div class="ear left"></div>
+            <div class="ear right"></div>
+            <div class="face">
+                <div class="eye left-eye">
+                    <div class="pupil"></div>
+                </div>
+                <div class="eye right-eye">
+                    <div class="pupil"></div>
+                </div>
+                <div class="nose"></div>
+                <div class="mouth"></div>
+            </div>
+        </div>
+        <div class="shirt"></div>
+        <div class="spray"></div>
+    </div>
+
+    <div id="modalProducto" class="modal" style="display: none;">
+        <div class="modal-contenido">
+            <span class="cerrar" onclick="cerrarModal()">&times;</span>
+            <img id="modalImagen" src="" alt="" />
+            <div class="modalDetalles">
+                <h3 id="modalTitulo"></h3>
+                <p id="modalDescripcion"></p>
+                <span class="precio" id="modalPrecio"></span>
+                <p><a id="modalLink" href="#" target="_blank">Comprar en Shopee</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
-
 
 
 
