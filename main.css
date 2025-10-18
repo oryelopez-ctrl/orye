@@ -193,70 +193,71 @@ li:hover {
     z-index: 1000; /* Asegura que toda la capibara esté por encima de la página */
 }
 
-/* BODY */
+/* BODY: Este es el contenedor de todas las partes de la capibara. */
 .body {
-    position: relative; /* Es el contenedor principal de la forma, sus hijos se posicionan respecto a él */
+    position: relative; /* **IMPORTANTE:** Para que sus hijos 'absolute' se posicionen respecto a él */
     width: 150px;
     height: 100px;
     background: #b59e7e; /* marrón capibara */
     border-radius: 60% / 70%;
     box-shadow: inset -5px 0 10px #8b795d;
-    z-index: 1; /* Nivel base del cuerpo */
+    /* No necesita z-index si es la base, a menos que algo más intente meterse debajo */
 }
 
-/* OREJAS */
+/* OREJAS: Posicionadas absolutamente respecto al BODY */
 .ear {
     position: absolute;
-    top: 10px;
+    top: 10px; /* Ajustado */
     width: 30px;
     height: 40px;
     background: #b59e7e;
     border-radius: 50% 50% 40% 40%;
     box-shadow: inset -3px 0 5px #8b795d;
-    z-index: 0; /* Las orejas pueden ir detrás de la cara o al mismo nivel si no se superponen */
+    z-index: 1; /* Detrás de la cara, pero encima del cuerpo */
 }
 .ear.left {
-    left: 5px;
+    left: 5px; /* Ajustado */
     transform: rotate(-15deg);
 }
 .ear.right {
-    right: 5px;
+    right: 5px; /* Ajustado */
     transform: rotate(15deg);
 }
 
-/* CARA */
+/* CARA: Posicionada absolutamente respecto al BODY */
 .face {
     position: absolute;
-    top: 20px;
-    left: 30px;
+    top: 25px; /* Ajustado para que esté centrada en el cuerpo */
+    left: 50%;
     width: 90px;
     height: 70px;
     background: #d6c4a0;
     border-radius: 50% / 60%;
     box-shadow: inset 0 5px 10px #b49e6d;
-    z-index: 2; /* La cara debe estar encima del cuerpo y las orejas */
+    transform: translateX(-50%); /* Centra la cara horizontalmente */
+    z-index: 2; /* Encima del cuerpo y las orejas */
 }
 
-/* OJOS (Cuenca) */
-.eye {
+/* OJOS (Cuenca): Posicionados absolutamente respecto a la CARA */
+.face .eye { /* El selector ahora incluye .face para ser más específico */
     position: absolute;
-    top: 20px;
+    top: 18px; /* Ajustado dentro de la cara */
     width: 25px;
     height: 25px;
     background: white;
     border-radius: 50%;
     overflow: hidden; /* **CLAVE**: Oculta la pupila al moverse fuera de la cuenca */
     border: 2px solid #333;
-    z-index: 3; /* Los ojos deben estar encima de la cara */
+    z-index: 3; /* Encima de la cara */
 }
-.left-eye {
-    left: 10px;
+.face .left-eye {
+    left: 10px; /* Ajustado dentro de la cara */
 }
-.right-eye {
-    right: 10px;
+.face .right-eye {
+    right: 10px; /* Ajustado dentro de la cara */
 }
 
-/* PUPILAS (Elemento que se mueve) */
+/* PUPILAS (Elemento que se mueve): Posicionadas absolutamente respecto a la CUENCA del ojo */
 .pupil {
     position: absolute;
     top: 6px;
@@ -266,33 +267,33 @@ li:hover {
     background: black;
     border-radius: 50%;
     transition: transform 0.1s ease; /* Movimiento suave */
-    z-index: 4; /* Las pupilas deben estar encima de la cuenca del ojo */
+    z-index: 4; /* Encima de la cuenca del ojo */
 }
 
-/* NARIZ */
-.nose {
+/* NARIZ: Posicionada absolutamente respecto a la CARA */
+.face .nose { /* Selector específico para la nariz dentro de la cara */
     position: absolute;
-    bottom: 20px;
+    bottom: 8px; /* Ajustado para estar más abajo en la cara */
     left: 50%;
     width: 15px;
     height: 10px;
     background: #654321;
     border-radius: 50% / 100%;
     transform: translateX(-50%);
-    z-index: 3; /* La nariz debe estar encima de la cara */
+    z-index: 3; /* Encima de la cara */
 }
 
-/* BOCA */
-.mouth {
+/* BOCA: Posicionada absolutamente respecto a la CARA */
+.face .mouth { /* Selector específico para la boca dentro de la cara */
     position: absolute;
-    bottom: 10px;
+    bottom: 0px; /* Ajustado para estar al final de la cara */
     left: 50%;
     width: 40px;
     height: 10px;
     border-bottom: 3px solid #654321;
     border-radius: 0 0 40px 40px;
     transform: translateX(-50%);
-    z-index: 3; /* La boca debe estar encima de la cara */
+    z-index: 3; /* Encima de la cara */
 }
 
 /* CAMISA */
@@ -327,13 +328,13 @@ li:hover {
 /* ESTADOS */
 
 /* Feliz: boca sonriente */
-.character.state-happy .mouth {
+.character.state-happy .face .mouth { /* Selector más específico */
     border-bottom: none;
     border-top: 3px solid #654321;
     border-radius: 40px 40px 0 0;
     height: 15px;
-    bottom: 15px;
-    z-index: 3; /* Mantiene la boca con el z-index adecuado */
+    bottom: 5px; /* Ajustado para la sonrisa */
+    z-index: 3;
 }
 
 /* Mostrar camisa */
@@ -345,3 +346,9 @@ li:hover {
 .character.state-spray .spray {
     opacity: 1;
 }
+
+/* Mostrar spray */
+.character.state-spray .spray {
+    opacity: 1;
+}
+
