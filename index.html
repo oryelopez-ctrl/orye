@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http‑equiv="X‑UA‑Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device‑width, initial‑scale=1.0">
   <title>Tienda</title>
   <link rel="stylesheet" href="main.css">
   <link rel="icon" type="image/jpg" href="basque.jpg">
@@ -12,29 +12,70 @@
   <h1 style="font-size: 60px;">TIENDA</h1>
   <p id="msg">Disponible:</p>
 
-  <!-- Opciones con clic -->
   <ul>
     <li class="list" onclick="mostrarSeccion('perfumes')">Perfumes</li>
     <li class="list" onclick="mostrarSeccion('camisetas')">Camisetas</li>
     <li class="list" onclick="mostrarSeccion('contacto')">Contacto</li>
   </ul>
 
-  <!-- Sección de perfumes -->
   <div id="perfumes" class="seccion" style="display:none;">
     <h2>Perfumes</h2>
     <p>Explora nuestra colección:</p>
     <div id="catalogo-perfumes" class="catalogo">
-      <!-- Producto 1 -->
       <div class="producto" onclick="abrirModal('empire-woman')">
         <img src="img/ew.png" alt="Empire Woman">
-        <h3>Empire
+        <h3>Empire Woman</h3>
+        <p>Notas de framboesa, bergamota, jazmín y praliné.</p>
+        <span class="precio">R$ 199,90</span>
+      </div>
+      <div class="producto" onclick="abrirModal('rebelle')">
+        <img src="img/mn.png" alt="Rebelle">
+        <h3>Rebelle</h3>
+        <p>Un aroma misterioso con toques de orquídea y rosa.</p>
+        <span class="precio">R$ 174,90</span>
+      </div>
+    </div>
+  </div>
 
+  <div id="camisetas" class="seccion" style="display:none;">
+    <h2>Camisetas</h2>
+    <p>Explora nuestras camisetas con diseños únicos.</p>
+    <!-- Podrías agregar productos de camisetas aquí -->
+  </div>
 
+  <div id="contacto" class="seccion" style="display:none;">
+    <h2>Contacto</h2>
+    <p>¿Tienes dudas? Contáctanos por correo o redes sociales.</p>
+  </div>
 
+  <div class="theme-switcher">
+    <button class="btn">🌙</button>
+  </div>
 
+  <!-- CAPIBARA -->
+  <div class="character">
+    <img id="capybara-body" src="img/capybara‑neutral.png" alt="Capibara" />
+    <div class="eye left-eye"></div>
+    <div class="eye right-eye"></div>
+  </div>
 
+  <!-- Modal de producto -->
+  <div id="modalProducto" class="modal" style="display: none;">
+    <div class="modal-contenido">
+      <span class="cerrar" onclick="cerrarModal()">&times;</span>
+      <img id="modalImagen" src="" alt="">
+      <div class="modalDetalles">
+        <h3 id="modalTitulo"></h3>
+        <p id="modalDescripcion"></p>
+        <span class="precio" id="modalPrecio"></span>
+        <p><a id="modalLink" href="#" target="_blank">Comprar en Shopee</a></p>
+      </div>
+    </div>
+  </div>
 
-
+  <script src="app.js"></script>
+</body>
+</html>
 
 
 
