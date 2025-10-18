@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,17 +19,34 @@
     <li class="list" onclick="mostrarSeccion('contacto')">Contacto</li>
   </ul>
 
-  <!-- Secciones ocultas -->
+  <!-- Sección de perfumes -->
   <div id="perfumes" class="seccion" style="display:none;">
     <h2>Perfumes</h2>
-    <p>Aquí encontrarás nuestra colección de perfumes exclusivos.</p>
+    <p>Explora nuestra colección:</p>
+    <div id="catalogo-perfumes" class="catalogo">
+      <div class="producto">
+        <img src="img/empire-woman.jpg" alt="Empire Woman">
+        <h3>Empire Woman</h3>
+        <p>Notas de framboesa, bergamota, jazmín y praliné.</p>
+        <span class="precio">R$ 199,90</span>
+      </div>
+      <div class="producto">
+        <img src="img/mystic-night.jpg" alt="Mystic Night">
+        <h3>Mystic Night</h3>
+        <p>Un aroma misterioso con toques de ámbar y vainilla.</p>
+        <span class="precio">R$ 249,90</span>
+      </div>
+      <!-- Agrega más productos aquí -->
+    </div>
   </div>
 
+  <!-- Sección de camisetas -->
   <div id="camisetas" class="seccion" style="display:none;">
     <h2>Camisetas</h2>
     <p>Explora nuestras camisetas con diseños únicos.</p>
   </div>
 
+  <!-- Sección de contacto -->
   <div id="contacto" class="seccion" style="display:none;">
     <h2>Contacto</h2>
     <p>¿Tienes dudas? Contáctanos por correo o redes sociales.</p>
@@ -50,38 +67,11 @@
     </div>
   </div>
 
-  <!-- Script para mostrar secciones -->
-  <script>
-    function mostrarSeccion(id) {
-      document.querySelectorAll('.seccion').forEach(seccion => {
-        seccion.style.display = 'none';
-      });
-      document.getElementById(id).style.display = 'block';
-    }
-
-
-  </script>
-
+  <!-- Scripts -->
   <script src="app.js"></script>
 </body>
 </html>
 
-
-    <div id="perfumes" class="seccion" style="display:none;">
-  <h2>Perfumes</h2>
-  <p>Explora nuestra colección:</p>
-
-  <!-- Catálogo de perfumes -->
-  <div id="catalogo-perfumes" class="catalogo">
-    <div class="producto">
-      <img src="img/empire-woman.jpg" alt="Empire Woman">
-      <h3>Empire Woman</h3>
-      <p>Notas de framboesa, bergamota, jasmim y praliné.</p>
-      <span class="precio">R$ 199,90</span>
-    </div>
-    <!-- Agrega más productos aquí -->
-  </div>
-</div>
 
 
 
