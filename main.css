@@ -177,173 +177,114 @@ li:hover {
     border-radius: 8px;
 }
 
+/* --- EN main.css --- */
+
+/* ... (Todo el CSS de tu tienda y temas, hasta la sección de capibara) ... */
+
 /* ----------------------------------- */
-/* CAPIBARA dibujada con CSS */
+/* CAPIBARA con Imagen y Ojos Interactivos */
 /* ----------------------------------- */
 .character {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    width: 150px;
-    height: 120px;
+    width: 200px; /* Ajusta este ancho al tamaño de tu imagen de capibara */
+    height: 200px; /* Ajusta esta altura al tamaño de tu imagen de capibara */
     pointer-events: none;
     user-select: none;
     transition: all 0.3s ease;
     font-size: 16px;
-    z-index: 1000; /* Asegura que toda la capibara esté por encima de la página */
+    z-index: 1000;
 }
 
-/* BODY: Este es el contenedor de todas las partes de la capibara. */
-.body {
-    position: relative; /* **IMPORTANTE:** Para que sus hijos 'absolute' se posicionen respecto a él */
-    width: 150px;
-    height: 100px;
-    background: #b59e7e; /* marrón capibara */
-    border-radius: 60% / 70%;
-    box-shadow: inset -5px 0 10px #8b795d;
-    /* No necesita z-index si es la base, a menos que algo más intente meterse debajo */
-}
-
-/* OREJAS: Posicionadas absolutamente respecto al BODY */
-.ear {
+/* El div que contendrá la imagen de fondo de la capibara */
+.capibara-base {
     position: absolute;
-    top: 10px; /* Ajustado */
-    width: 30px;
-    height: 40px;
-    background: #b59e7e;
-    border-radius: 50% 50% 40% 40%;
-    box-shadow: inset -3px 0 5px #8b795d;
-    z-index: 1; /* Detrás de la cara, pero encima del cuerpo */
-}
-.ear.left {
-    left: 5px; /* Ajustado */
-    transform: rotate(-15deg);
-}
-.ear.right {
-    right: 5px; /* Ajustado */
-    transform: rotate(15deg);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('img/capibara-base.png'); /* **IMPORTANTE:** Pon aquí la ruta a tu imagen */
+    background-size: contain; /* Ajusta la imagen dentro del div */
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1; /* Fondo del capibara */
 }
 
-/* CARA: Posicionada absolutamente respecto al BODY */
-.face {
+/* OJOS (Cuenca): Posiciona estos divs sobre la imagen de la capibara */
+/* Ajusta los valores de 'top' y 'left'/'right' para que coincidan con los ojos de tu imagen */
+.eye {
     position: absolute;
-    top: 25px; /* Ajustado para que esté centrada en el cuerpo */
-    left: 50%;
-    width: 90px;
-    height: 70px;
-    background: #d6c4a0;
-    border-radius: 50% / 60%;
-    box-shadow: inset 0 5px 10px #b49e6d;
-    transform: translateX(-50%); /* Centra la cara horizontalmente */
-    z-index: 2; /* Encima del cuerpo y las orejas */
-}
-
-/* OJOS (Cuenca): Posicionados absolutamente respecto a la CARA */
-.face .eye { /* El selector ahora incluye .face para ser más específico */
-    position: absolute;
-    top: 18px; /* Ajustado dentro de la cara */
-    width: 25px;
-    height: 25px;
-    background: white;
+    width: 30px; /* Tamaño de la cuenca del ojo en tu imagen */
+    height: 30px; /* Tamaño de la cuenca del ojo en tu imagen */
+    background: transparent; /* Ahora la cuenca es transparente, la parte blanca es parte de la imagen */
     border-radius: 50%;
-    overflow: hidden; /* **CLAVE**: Oculta la pupila al moverse fuera de la cuenca */
-    border: 2px solid #333;
-    z-index: 3; /* Encima de la cara */
+    overflow: hidden; 
+    /* border: 1px solid red; /* Puedes descomentar esto para ver dónde están los ojos */
+    z-index: 3; /* Encima de la imagen de la capibara */
 }
-.face .left-eye {
-    left: 10px; /* Ajustado dentro de la cara */
+.left-eye {
+    top: 55px; /* Ajusta este valor para el ojo izquierdo */
+    left: 60px; /* Ajusta este valor para el ojo izquierdo */
 }
-.face .right-eye {
-    right: 10px; /* Ajustado dentro de la cara */
+.right-eye {
+    top: 55px; /* Ajusta este valor para el ojo derecho */
+    left: 105px; /* Ajusta este valor para el ojo derecho (o right: Xpx) */
 }
 
-/* PUPILAS (Elemento que se mueve): Posicionadas absolutamente respecto a la CUENCA del ojo */
+/* PUPILAS (Elemento que se mueve) */
 .pupil {
     position: absolute;
-    top: 6px;
-    left: 6px;
-    width: 12px;
-    height: 12px;
+    top: 8px; /* Posición inicial de la pupila dentro del div 'eye' */
+    left: 8px; /* Posición inicial de la pupila dentro del div 'eye' */
+    width: 14px; /* Tamaño de la pupila */
+    height: 14px; /* Tamaño de la pupila */
     background: black;
     border-radius: 50%;
     transition: transform 0.1s ease; /* Movimiento suave */
-    z-index: 4; /* Encima de la cuenca del ojo */
+    z-index: 4; /* Encima de la cuenca (transparente) */
 }
 
-/* NARIZ: Posicionada absolutamente respecto a la CARA */
-.face .nose { /* Selector específico para la nariz dentro de la cara */
-    position: absolute;
-    bottom: 8px; /* Ajustado para estar más abajo en la cara */
-    left: 50%;
-    width: 15px;
-    height: 10px;
-    background: #654321;
-    border-radius: 50% / 100%;
-    transform: translateX(-50%);
-    z-index: 3; /* Encima de la cara */
-}
-
-/* BOCA: Posicionada absolutamente respecto a la CARA */
-.face .mouth { /* Selector específico para la boca dentro de la cara */
-    position: absolute;
-    bottom: 0px; /* Ajustado para estar al final de la cara */
-    left: 50%;
-    width: 40px;
-    height: 10px;
-    border-bottom: 3px solid #654321;
-    border-radius: 0 0 40px 40px;
-    transform: translateX(-50%);
-    z-index: 3; /* Encima de la cara */
-}
-
-/* CAMISA */
+/* CAMISA (Si tu imagen base no tiene camisa y quieres superponerla) */
 .shirt {
     position: absolute;
-    bottom: -10px;
-    left: 20px;
-    width: 110px;
-    height: 40px;
+    bottom: 0px; /* Posiciona la camisa en el capibara */
+    left: 40px;
+    width: 120px;
+    height: 50px;
     background: #3a7bd5;
     border-radius: 15px 15px 5px 5px;
     opacity: 0;
     transition: opacity 0.3s ease;
-    z-index: 1; /* La camisa está en el mismo nivel que el cuerpo o ligeramente por encima */
+    z-index: 2; /* Encima de la imagen base, debajo de los ojos */
 }
 
-/* SPRAY - perfume */
+/* SPRAY - perfume (Si tu imagen base no tiene spray) */
 .spray {
     position: absolute;
-    top: 10px;
-    right: -30px;
-    width: 20px;
-    height: 50px;
+    top: 20px;
+    right: 10px;
+    width: 25px;
+    height: 60px;
     background: #d8d8d8;
     border-radius: 10px;
     box-shadow: 0 0 5px 2px #a2c3f5;
     opacity: 0;
     transition: opacity 0.3s ease;
-    z-index: 5; /* El spray debe estar por encima de todo cuando aparece */
+    z-index: 5; /* Encima de todo cuando aparece */
 }
 
 /* ESTADOS */
 
-/* Feliz: boca sonriente */
-.character.state-happy .face .mouth { /* Selector más específico */
-    border-bottom: none;
-    border-top: 3px solid #654321;
-    border-radius: 40px 40px 0 0;
-    height: 15px;
-    bottom: 5px; /* Ajustado para la sonrisa */
-    z-index: 3;
+/* Feliz: Puedes cambiar la imagen de fondo o tener una boca feliz en la imagen base */
+/* Si tu imagen base tiene boca neutra, podrías tener una imagen de boca feliz para superponer */
+.character.state-happy .capibara-base {
+    /* Si tienes una imagen de capibara feliz, cárgala aquí */
+    /* background-image: url('img/capibara-feliz.png'); */
 }
 
 /* Mostrar camisa */
 .character.state-shirt .shirt {
-    opacity: 1;
-}
-
-/* Mostrar spray */
-.character.state-spray .spray {
     opacity: 1;
 }
 
