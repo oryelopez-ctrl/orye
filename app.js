@@ -1,3 +1,4 @@
+// --- EN app.js ---
 'use strict'; 
 
 // CAMBIO DE TEMA
@@ -19,45 +20,39 @@ function mostrarSeccion(id) {
     const character = document.querySelector('.character');
     character.classList.remove('state-spray', 'state-shirt', 'state-happy');
     if (id === 'perfumes') {
-        // modo feliz (cuando se muestra catálogo perfumes)
         character.classList.add('state-happy');
     } else if (id === 'camisetas') {
-        // modo “poniéndose camiseta”
         character.classList.add('state-shirt');
     } else {
-        // sección contacto u otra → neutral (sin clase)
-        // no añadimos nada
+        // neutral - no añadimos nada
     }
 
     cerrarModal(); // Asegura que el modal esté cerrado
 }
 
 // -----------------------------------
-// OJOS SIGUEN CURSOR (Lógica central para la animación)
+// OJOS SIGUEN CURSOR
 // -----------------------------------
-const eyes = document.querySelectorAll('.eye .pupil'); // Selecciona las PUPILAS
-const radius = 4; // Distancia máxima de movimiento de la pupila en px
+const eyes = document.querySelectorAll('.eye .pupil'); 
+const radius = 4; 
 
 function calculateAngle(cx, cy, mx, my) {
     const dx = mx - cx;
     const dy = my - cy;
-    return Math.atan2(dy, dx); // Retorna el ángulo en radianes
+    return Math.atan2(dy, dx); 
 }
 
 function moveEyes(x, y) {
     eyes.forEach(pupil => {
-        // Obtenemos el centro de la CUENCA del ojo (.eye) para el cálculo
         const eyeRect = pupil.parentElement.getBoundingClientRect(); 
         const cx = eyeRect.left + eyeRect.width / 2;
         const cy = eyeRect.top + eyeRect.height / 2;
         
         const angle = calculateAngle(cx, cy, x, y);
 
-        // Calculamos el desplazamiento (X e Y) basado en el ángulo y el radio
         const moveX = Math.cos(angle) * radius;
         const moveY = Math.sin(angle) * radius;
         
-        // Aplicamos la transformación a la PUPILA
         pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
     });
 }
@@ -96,7 +91,6 @@ function abrirModal(key) {
     const prod = productos[key];
     if (!prod) return;
 
-    // Actualizar contenido modal
     document.getElementById("modalImagen").src = prod.imagen;
     document.getElementById("modalTitulo").textContent = prod.titulo;
     document.getElementById("modalDescripcion").textContent = prod.descripcion;
@@ -104,10 +98,8 @@ function abrirModal(key) {
     document.getElementById("modalLink").href = prod.enlace;
     document.getElementById("modalLink").textContent = "Comprar en Shopee";
 
-    // Mostrar modal
     document.getElementById("modalProducto").style.display = "flex";
 
-    // Cambiar estado capibara a "echando spray"
     const character = document.querySelector('.character');
     character.classList.remove('state-shirt', 'state-happy');
     character.classList.add('state-spray');
@@ -116,12 +108,9 @@ function abrirModal(key) {
 function cerrarModal() {
     document.getElementById("modalProducto").style.display = "none";
 
-    // Volver a estado anterior según sección visible
     const character = document.querySelector('.character');
     character.classList.remove('state-spray', 'state-shirt', 'state-happy');
 
-    // Usamos 'block' o 'flex' porque al mostrarSeccion se asigna 'block'
-    // Comprobamos si las secciones están visibles
     if (document.getElementById('perfumes').style.display === 'block') {
         character.classList.add('state-happy');
     } else if (document.getElementById('camisetas').style.display === 'block') {
@@ -130,6 +119,4 @@ function cerrarModal() {
         // neutral - no clase
     }
 }
-
-
 
