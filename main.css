@@ -158,5 +158,53 @@ li:hover {
   content: url("img/capybara-shirt.png");
 }
 
+.producto {
+  border: 1px solid #ccc;
+  padding: 15px;
+  width: 220px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: var(--cardBg); /* fondo adaptable */
+  color: var(--fontColor);         /* texto adaptable */
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+  transition: var(--transition);
+}
+
+.producto img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.producto h3 {
+  font-size: 18px;
+  margin-top: 10px;
+  color: var(--fontColor); /* asegúrate que use el color del tema */
+}
+
+.producto p {
+  font-size: 14px;
+  margin: 10px 0;
+  color: var(--fontColor); /* también adaptado al tema */
+}
+
+.precio {
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--fontColor); /* adaptado */
+}
+
+.producto a {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: var(--btnFontColor); /* que se adapte al tema también */
+  text-decoration: none;
+}
+
+.producto a:hover {
+  text-decoration: underline;
+}
+
 
 
