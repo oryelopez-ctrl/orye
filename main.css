@@ -1,5 +1,6 @@
 :root {
   --transition: all 0.5s ease;
+  --cardBg: #fff; /* fondo por defecto de las tarjetas */
 }
 
 /* Tema claro */
@@ -8,6 +9,7 @@
   --fontColor: #222;
   --btnBg: #fff;
   --btnFontColor: #222;
+  --cardBg: #fff;
 }
 
 /* Tema oscuro */
@@ -16,6 +18,7 @@
   --fontColor: #f0f0f0;
   --btnBg: #333;
   --btnFontColor: #f0f0f0;
+  --cardBg: #2a2a40;
 }
 
 body {
@@ -77,33 +80,6 @@ li:hover {
   margin-top: 20px;
 }
 
-/* OJOS */
-.character {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  gap: 10px;
-  z-index: 1000;
-}
-.eye-container {
-  width: 60px;
-  height: 60px;
-  background: #fff;
-  border: 2px solid #000;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.eye {
-  width: 20px;
-  height: 20px;
-  background: #000;
-  border-radius: 50%;
-  transition: transform 0.1s linear;
-}
-
 /* Catálogo de productos */
 .catalogo {
   display: flex;
@@ -112,24 +88,28 @@ li:hover {
   justify-content: center;
   margin-top: 20px;
 }
+
 .producto {
   border: 1px solid #ccc;
   padding: 15px;
   width: 220px;
   text-align: center;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: var(--cardBg); /* se adapta al tema */
+  color: var(--fontColor); /* texto adaptado también */
   box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
 }
+
 .producto img {
   width: 100%;
   height: auto;
   border-radius: 5px;
 }
+
 .precio {
   font-weight: bold;
-  color: #2a9d8f;
   font-size: 18px;
+  color: var(--fontColor);
 }
 
 /* Capibara personaje */
@@ -139,13 +119,15 @@ li:hover {
   left: 20px;
   width: 120px;
   height: auto;
-  pointer-events: none; /* para que no interfiera con clics */
+  pointer-events: none; /* no interfiere con clics */
 }
+
 .character img {
   width: 100%;
   height: auto;
   display: block;
 }
+
 .eye {
   position: absolute;
   width: 12px;
@@ -154,58 +136,27 @@ li:hover {
   border-radius: 50%;
   transition: transform 0.1s linear;
 }
+
 .left-eye {
   top: 30px;
   left: 30px;
 }
-.right-eye {
-  top: 30px;
-  left: 60px;
-}
-/* Capibara personaje */
-.character {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  width: 120px;
-  height: auto;
-  pointer-events: none; /* para que no interfiera con clics */
-}
-.character img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-.eye {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  background: #000;
-  border-radius: 50%;
-  transition: transform 0.1s linear;
-}
-.left-eye {
-  top: 30px;
-  left: 30px;
-}
+
 .right-eye {
   top: 30px;
   left: 60px;
 }
 
-/* estados de capibara */
+/* Estados animados del capibara */
 .character.state-happy img {
-  content: url("img/capybara‑happy.png");
+  content: url("img/capybara-happy.png");
 }
 .character.state-spray img {
-  content: url("img/capybara‑spray.png");
+  content: url("img/capybara-spray.png");
 }
 .character.state-shirt img {
-  content: url("img/capybara‑shirt.png");
+  content: url("img/capybara-shirt.png");
 }
-
-/* asegúrate de que el modal aún funcione responsive */
-/* (ya lo tienes) */
 
 
 
