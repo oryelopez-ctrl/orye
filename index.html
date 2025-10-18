@@ -12,11 +12,28 @@
   <h1 style="font-size: 60px;">TIENDA</h1>
   <p id="msg">Disponible:</p>
 
+  <!-- Opciones con clic -->
   <ul>
-    <li class="list">Perfumes</li>
-    <li class="list">Camisetas</li>
-    <li class="list">Contacto</li>
+    <li class="list" onclick="mostrarSeccion('perfumes')">Perfumes</li>
+    <li class="list" onclick="mostrarSeccion('camisetas')">Camisetas</li>
+    <li class="list" onclick="mostrarSeccion('contacto')">Contacto</li>
   </ul>
+
+  <!-- Secciones ocultas -->
+  <div id="perfumes" class="seccion" style="display:none;">
+    <h2>Perfumes</h2>
+    <p>Aquí encontrarás nuestra colección de perfumes exclusivos.</p>
+  </div>
+
+  <div id="camisetas" class="seccion" style="display:none;">
+    <h2>Camisetas</h2>
+    <p>Explora nuestras camisetas con diseños únicos.</p>
+  </div>
+
+  <div id="contacto" class="seccion" style="display:none;">
+    <h2>Contacto</h2>
+    <p>¿Tienes dudas? Contáctanos por correo o redes sociales.</p>
+  </div>
 
   <!-- Botón de cambio de tema -->
   <div class="theme-switcher">
@@ -32,6 +49,16 @@
       <div class="eye right-eye"></div>
     </div>
   </div>
+
+  <!-- Script para mostrar secciones -->
+  <script>
+    function mostrarSeccion(id) {
+      document.querySelectorAll('.seccion').forEach(seccion => {
+        seccion.style.display = 'none';
+      });
+      document.getElementById(id).style.display = 'block';
+    }
+  </script>
 
   <script src="app.js"></script>
 </body>
