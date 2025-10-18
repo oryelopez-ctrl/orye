@@ -12,6 +12,16 @@ switcher.addEventListener('click', function () {
 });
 
 // =======================
+// MOSTRAR SECCIONES
+// =======================
+function mostrarSeccion(id) {
+  document.querySelectorAll('.seccion').forEach(seccion => {
+    seccion.style.display = 'none';
+  });
+  document.getElementById(id).style.display = 'block';
+}
+
+// =======================
 // OJOS SIGUEN CURSOR
 // =======================
 const eyes = document.querySelectorAll('.eye');
@@ -29,8 +39,7 @@ function moveEyes(x, y) {
     const cy = rect.top + rect.height / 2;
     const angle = calculateAngle(cx, cy, x, y);
     
-    // Movimiento del ojo (pupila)
-    const radius = 10; // cuánto se mueve la pupila
+    const radius = 10;
     const moveX = Math.cos(angle) * radius;
     const moveY = Math.sin(angle) * radius;
 
@@ -42,10 +51,10 @@ document.addEventListener('mousemove', (e) => {
   moveEyes(e.clientX, e.clientY);
 });
 
-// OPCIONAL: soporte táctil
 document.addEventListener('touchmove', (e) => {
   if (e.touches.length > 0) {
     moveEyes(e.touches[0].clientX, e.touches[0].clientY);
   }
 });
+
 
