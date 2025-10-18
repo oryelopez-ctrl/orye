@@ -190,17 +190,18 @@ li:hover {
     user-select: none;
     transition: all 0.3s ease;
     font-size: 16px;
-    z-index: 1000;
+    z-index: 1000; /* Asegura que toda la capibara esté por encima de la página */
 }
 
 /* BODY */
 .body {
-    position: relative;
+    position: relative; /* Es el contenedor principal de la forma, sus hijos se posicionan respecto a él */
     width: 150px;
     height: 100px;
     background: #b59e7e; /* marrón capibara */
     border-radius: 60% / 70%;
     box-shadow: inset -5px 0 10px #8b795d;
+    z-index: 1; /* Nivel base del cuerpo */
 }
 
 /* OREJAS */
@@ -212,6 +213,7 @@ li:hover {
     background: #b59e7e;
     border-radius: 50% 50% 40% 40%;
     box-shadow: inset -3px 0 5px #8b795d;
+    z-index: 0; /* Las orejas pueden ir detrás de la cara o al mismo nivel si no se superponen */
 }
 .ear.left {
     left: 5px;
@@ -232,6 +234,7 @@ li:hover {
     background: #d6c4a0;
     border-radius: 50% / 60%;
     box-shadow: inset 0 5px 10px #b49e6d;
+    z-index: 2; /* La cara debe estar encima del cuerpo y las orejas */
 }
 
 /* OJOS (Cuenca) */
@@ -244,6 +247,7 @@ li:hover {
     border-radius: 50%;
     overflow: hidden; /* **CLAVE**: Oculta la pupila al moverse fuera de la cuenca */
     border: 2px solid #333;
+    z-index: 3; /* Los ojos deben estar encima de la cara */
 }
 .left-eye {
     left: 10px;
@@ -262,6 +266,7 @@ li:hover {
     background: black;
     border-radius: 50%;
     transition: transform 0.1s ease; /* Movimiento suave */
+    z-index: 4; /* Las pupilas deben estar encima de la cuenca del ojo */
 }
 
 /* NARIZ */
@@ -274,6 +279,7 @@ li:hover {
     background: #654321;
     border-radius: 50% / 100%;
     transform: translateX(-50%);
+    z-index: 3; /* La nariz debe estar encima de la cara */
 }
 
 /* BOCA */
@@ -286,6 +292,7 @@ li:hover {
     border-bottom: 3px solid #654321;
     border-radius: 0 0 40px 40px;
     transform: translateX(-50%);
+    z-index: 3; /* La boca debe estar encima de la cara */
 }
 
 /* CAMISA */
@@ -299,6 +306,7 @@ li:hover {
     border-radius: 15px 15px 5px 5px;
     opacity: 0;
     transition: opacity 0.3s ease;
+    z-index: 1; /* La camisa está en el mismo nivel que el cuerpo o ligeramente por encima */
 }
 
 /* SPRAY - perfume */
@@ -313,6 +321,7 @@ li:hover {
     box-shadow: 0 0 5px 2px #a2c3f5;
     opacity: 0;
     transition: opacity 0.3s ease;
+    z-index: 5; /* El spray debe estar por encima de todo cuando aparece */
 }
 
 /* ESTADOS */
@@ -324,6 +333,7 @@ li:hover {
     border-radius: 40px 40px 0 0;
     height: 15px;
     bottom: 15px;
+    z-index: 3; /* Mantiene la boca con el z-index adecuado */
 }
 
 /* Mostrar camisa */
