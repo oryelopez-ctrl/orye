@@ -208,7 +208,7 @@ li:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('├──img/capin.png'); /* **IMPORTANTE:** Ruta a tu imagen */
+    background-image: url('├── img/capin.png'); /* **IMPORTANTE:** Ruta a tu imagen */
     background-size: contain; /* Ajusta la imagen dentro del div */
     background-repeat: no-repeat;
     background-position: center;
@@ -296,6 +296,7 @@ li:hover {
 /* ... y las clases de estado para .shirt y .spray ... */
 .character.state-shirt .shirt { opacity: 1; }
 .character.state-spray .spray { opacity: 1; }
+
 
 
 
