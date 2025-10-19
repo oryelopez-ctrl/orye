@@ -181,15 +181,19 @@ li:hover {
 
 /* ... (Todo el CSS de tu tienda y temas, hasta la sección de capibara) ... */
 
+/* --- EN main.css --- */
+
+/* ... (mantén todo tu CSS anterior hasta la sección de capibara) ... */
+
 /* ----------------------------------- */
-/* CAPIBARA con Imagen y Ojos Interactivos */
+/* CAPIBARA con Imagen de Fondo y Ojos CSS */
 /* ----------------------------------- */
 .character {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    width: 200px; /* Ajusta este ancho al tamaño de tu imagen de capibara */
-    height: 200px; /* Ajusta esta altura al tamaño de tu imagen de capibara */
+    width: 200px; /* Ajusta esto al ancho de tu imagen capibara-base.png */
+    height: 200px; /* Ajusta esto a la altura de tu imagen capibara-base.png */
     pointer-events: none;
     user-select: none;
     transition: all 0.3s ease;
@@ -204,32 +208,32 @@ li:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('├── img/capin.png'); /* **IMPORTANTE:** Pon aquí la ruta a tu imagen */
+    background-image: url('img/capibara-base.png'); /* **IMPORTANTE:** Ruta a tu imagen */
     background-size: contain; /* Ajusta la imagen dentro del div */
     background-repeat: no-repeat;
     background-position: center;
     z-index: 1; /* Fondo del capibara */
 }
 
-/* OJOS (Cuenca): Posiciona estos divs sobre la imagen de la capibara */
-/* Ajusta los valores de 'top' y 'left'/'right' para que coincidan con los ojos de tu imagen */
+/* OJOS (Cuenca blanca dibujada con CSS) */
+/* **AJUSTA TOP Y LEFT para alinear con la imagen de fondo** */
 .eye {
     position: absolute;
-    width: 30px; /* Tamaño de la cuenca del ojo en tu imagen */
-    height: 30px; /* Tamaño de la cuenca del ojo en tu imagen */
-    background: transparent; /* Ahora la cuenca es transparente, la parte blanca es parte de la imagen */
+    width: 30px; /* Tamaño de la cuenca del ojo */
+    height: 30px; /* Tamaño de la cuenca del ojo */
+    background: white; /* Color blanco de la cuenca */
     border-radius: 50%;
-    overflow: hidden; 
-    /* border: 1px solid red; /* Puedes descomentar esto para ver dónde están los ojos */
+    overflow: hidden; /* Oculta la pupila al moverse */
+    border: 2px solid #333; /* Borde oscuro para el ojo */
     z-index: 3; /* Encima de la imagen de la capibara */
 }
 .left-eye {
-    top: 55px; /* Ajusta este valor para el ojo izquierdo */
-    left: 60px; /* Ajusta este valor para el ojo izquierdo */
+    top: 55px; /* **AJUSTA ESTO** (posición vertical) */
+    left: 60px; /* **AJUSTA ESTO** (posición horizontal) */
 }
 .right-eye {
-    top: 55px; /* Ajusta este valor para el ojo derecho */
-    left: 105px; /* Ajusta este valor para el ojo derecho (o right: Xpx) */
+    top: 55px; /* **AJUSTA ESTO** (debe ser similar al izquierdo) */
+    left: 105px; /* **AJUSTA ESTO** (debe ser a la derecha del izquierdo) */
 }
 
 /* PUPILAS (Elemento que se mueve) */
@@ -242,55 +246,54 @@ li:hover {
     background: black;
     border-radius: 50%;
     transition: transform 0.1s ease; /* Movimiento suave */
-    z-index: 4; /* Encima de la cuenca (transparente) */
+    z-index: 4; /* Encima de la cuenca blanca */
 }
 
-/* CAMISA (Si tu imagen base no tiene camisa y quieres superponerla) */
+/* CAMISA, SPRAY y ESTADOS: Si tu capibara base NO tiene camisa/spray,
+   y quieres superponerlos como elementos CSS/imágenes separadas, 
+   tendrías que definir aquí sus estilos y ajustar sus posiciones. 
+   Por ahora, los dejo como estaban, asumiendo que tu capibara-base.png es neutral. */
+
+/* Si quieres que la imagen base cambie por estados: */
+.character.state-happy .capibara-base {
+    /* background-image: url('img/capibara-happy.png'); */
+}
+.character.state-shirt .capibara-base {
+    /* background-image: url('img/capibara-shirt.png'); */
+}
+.character.state-spray .capibara-base {
+    /* background-image: url('img/capibara-spray.png'); */
+}
+
+/* Si usas elementos CSS para camisa/spray/boca (como en tu código original), 
+   tendrías que mantener esas reglas CSS y ajustar sus posiciones sobre la imagen base. */
+/* Por ejemplo, si el .shirt y .spray son divs dibujados con CSS: */
 .shirt {
     position: absolute;
-    bottom: 0px; /* Posiciona la camisa en el capibara */
-    left: 40px;
-    width: 120px;
-    height: 50px;
+    bottom: 0px; /* Ajusta */
+    left: 40px; /* Ajusta */
+    width: 120px; /* Ajusta */
+    height: 50px; /* Ajusta */
     background: #3a7bd5;
     border-radius: 15px 15px 5px 5px;
     opacity: 0;
     transition: opacity 0.3s ease;
-    z-index: 2; /* Encima de la imagen base, debajo de los ojos */
+    z-index: 2; 
 }
-
-/* SPRAY - perfume (Si tu imagen base no tiene spray) */
 .spray {
     position: absolute;
-    top: 20px;
-    right: 10px;
-    width: 25px;
-    height: 60px;
+    top: 20px; /* Ajusta */
+    right: 10px; /* Ajusta */
+    width: 25px; /* Ajusta */
+    height: 60px; /* Ajusta */
     background: #d8d8d8;
     border-radius: 10px;
     box-shadow: 0 0 5px 2px #a2c3f5;
     opacity: 0;
     transition: opacity 0.3s ease;
-    z-index: 5; /* Encima de todo cuando aparece */
+    z-index: 5; 
 }
-
-/* ESTADOS */
-
-/* Feliz: Puedes cambiar la imagen de fondo o tener una boca feliz en la imagen base */
-/* Si tu imagen base tiene boca neutra, podrías tener una imagen de boca feliz para superponer */
-.character.state-happy .capibara-base {
-    /* Si tienes una imagen de capibara feliz, cárgala aquí */
-    /* background-image: url('img/capibara-feliz.png'); */
-}
-
-/* Mostrar camisa */
-.character.state-shirt .shirt {
-    opacity: 1;
-}
-
-/* Mostrar spray */
-.character.state-spray .spray {
-    opacity: 1;
-}
-
+/* ... y las clases de estado para .shirt y .spray ... */
+.character.state-shirt .shirt { opacity: 1; }
+.character.state-spray .spray { opacity: 1; }
 
