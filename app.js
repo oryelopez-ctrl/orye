@@ -1,20 +1,21 @@
-// --- EN app.js ---
 'use strict'; 
 
-// CAMBIO DE TEMA
+// CAMBIO DE TEMA (clases explícitas y botón accesible)
 const switcher = document.querySelector('.btn');
 switcher.addEventListener('click', function () {
-    document.body.classList.toggle('dark-theme');
-    let className = document.body.className;
-    this.textContent = className.includes("light-theme") ? "🌙" : "🌞";
+    if(document.body.classList.contains('light-theme')) {
+        document.body.classList.replace('light-theme', 'dark-theme');
+        this.textContent = "🌞";
+    } else {
+        document.body.classList.replace('dark-theme', 'light-theme');
+        this.textContent = "🌙";
+    }
 });
 
-// MOSTRAR SECCIONES
+// MOSTRAR SECCIONES con clases para mostrar/ocultar
 function mostrarSeccion(id) {
-    document.querySelectorAll('.seccion').forEach(sec => {
-        sec.style.display = 'none';
-    });
-    document.getElementById(id).style.display = 'block';
+    document.querySelectorAll('.seccion').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
 
     // Cambiar estado capibara según sección
     const character = document.querySelector('.character');
@@ -31,7 +32,7 @@ function mostrarSeccion(id) {
 }
 
 // -----------------------------------
-// OJOS SIGUEN CURSOR
+// OJOS SIGUEN CURSOR optimizado con requestAnimationFrame
 // -----------------------------------
 const eyes = document.querySelectorAll('.eye .pupil'); 
 const radius = 4; 
@@ -57,13 +58,25 @@ function moveEyes(x, y) {
     });
 }
 
-document.addEventListener('mousemove', e => {
-    moveEyes(e.clientX, e.clientY);
-});
+let lastX = 0, lastY = 0;
+let moving = false;
 
+function onMove(x, y) {
+    lastX = x;
+    lastY = y;
+    if (!moving) {
+        moving = true;
+        requestAnimationFrame(() => {
+            moveEyes(lastX, lastY);
+            moving = false;
+        });
+    }
+}
+
+document.addEventListener('mousemove', e => onMove(e.clientX, e.clientY));
 document.addEventListener('touchmove', e => {
     if (e.touches.length > 0) {
-        moveEyes(e.touches[0].clientX, e.touches[0].clientY);
+        onMove(e.touches[0].clientX, e.touches[0].clientY);
     }
 });
 
@@ -92,6 +105,7 @@ function abrirModal(key) {
     if (!prod) return;
 
     document.getElementById("modalImagen").src = prod.imagen;
+    document.getElementById("modalImagen").alt = prod.titulo;
     document.getElementById("modalTitulo").textContent = prod.titulo;
     document.getElementById("modalDescripcion").textContent = prod.descripcion;
     document.getElementById("modalPrecio").textContent = prod.precio;
@@ -111,12 +125,26 @@ function cerrarModal() {
     const character = document.querySelector('.character');
     character.classList.remove('state-spray', 'state-shirt', 'state-happy');
 
-    if (document.getElementById('perfumes').style.display === 'block') {
+    if (document.getElementById('perfumes').classList.contains('active')) {
         character.classList.add('state-happy');
-    } else if (document.getElementById('camisetas').style.display === 'block') {
+    } else if (document.getElementById('camisetas').classList.contains('active')) {
         character.classList.add('state-shirt');
     } else {
         // neutral - no clase
     }
 }
+
+// Cerrar modal con Escape y click fuera del contenido modal
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        cerrarModal();
+    }
+});
+
+document.getElementById('modalProducto').addEventListener('click', e => {
+    if (e.target === e.currentTarget) {
+        cerrarModal();
+    }
+});
+
 
