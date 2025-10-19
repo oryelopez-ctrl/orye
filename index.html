@@ -10,48 +10,52 @@
 </head>
 <body class="light-theme">
     <h1 style="font-size: 60px;">TIENDA</h1>
-    <p id="msg">Disponible:</p>
+    <p id="msg" role="status" aria-live="polite">Disponible:</p>
 
-    <ul>
-        <li class="list" onclick="mostrarSeccion('perfumes')">Perfumes</li>
-        <li class="list" onclick="mostrarSeccion('camisetas')">Camisetas</li>
-        <li class="list" onclick="mostrarSeccion('contacto')">Contacto</li>
-    </ul>
+    <nav>
+        <ul>
+            <li class="list" tabindex="0" role="button" aria-pressed="false" onclick="mostrarSeccion('perfumes')" onkeypress="if(event.key==='Enter') mostrarSeccion('perfumes')">Perfumes</li>
+            <li class="list" tabindex="0" role="button" aria-pressed="false" onclick="mostrarSeccion('camisetas')" onkeypress="if(event.key==='Enter') mostrarSeccion('camisetas')">Camisetas</li>
+            <li class="list" tabindex="0" role="button" aria-pressed="false" onclick="mostrarSeccion('contacto')" onkeypress="if(event.key==='Enter') mostrarSeccion('contacto')">Contacto</li>
+        </ul>
+    </nav>
 
-    <div id="perfumes" class="seccion" style="display:none;">
-        <h2>Perfumes</h2>
-        <p>Explora nuestra colección:</p>
-        <div id="catalogo-perfumes" class="catalogo">
-            <div class="producto" onclick="abrirModal('empire-woman')">
-                <img src="├── img/ew.png" alt="Empire Woman" />
-                <h3>Empire Woman</h3>
-                <p>Notas de framboesa, bergamota, jazmín y praliné.</p>
-                <span class="precio">R$ 199,90</span>
+    <main>
+        <section id="perfumes" class="seccion" aria-label="Sección de perfumes">
+            <h2>Perfumes</h2>
+            <p>Explora nuestra colección:</p>
+            <div id="catalogo-perfumes" class="catalogo">
+                <article class="producto" tabindex="0" role="button" aria-pressed="false" onclick="abrirModal('empire-woman')" onkeypress="if(event.key==='Enter') abrirModal('empire-woman')">
+                    <img src="img/ew.png" alt="Empire Woman" />
+                    <h3>Empire Woman</h3>
+                    <p>Notas de framboesa, bergamota, jazmín y praliné.</p>
+                    <span class="precio">R$ 199,90</span>
+                </article>
+                <article class="producto" tabindex="0" role="button" aria-pressed="false" onclick="abrirModal('rebelle')" onkeypress="if(event.key==='Enter') abrirModal('rebelle')">
+                    <img src="img/mn.png" alt="Rebelle" />
+                    <h3>Rebelle</h3>
+                    <p>Un aroma misterioso con toques de orquídea y rosa.</p>
+                    <span class="precio">R$ 174,90</span>
+                </article>
             </div>
-            <div class="producto" onclick="abrirModal('rebelle')">
-                <img src="├── img/mn.png" alt="Rebelle" />
-                <h3>Rebelle</h3>
-                <p>Un aroma misterioso con toques de orquídea y rosa.</p>
-                <span class="precio">R$ 174,90</span>
-            </div>
-        </div>
-    </div>
+        </section>
 
-    <div id="camisetas" class="seccion" style="display:none;">
-        <h2>Camisetas</h2>
-        <p>Explora nuestras camisetas con diseños únicos.</p>
-    </div>
+        <section id="camisetas" class="seccion" aria-label="Sección de camisetas">
+            <h2>Camisetas</h2>
+            <p>Explora nuestras camisetas con diseños únicos.</p>
+        </section>
 
-    <div id="contacto" class="seccion" style="display:none;">
-        <h2>Contacto</h2>
-        <p>¿Tienes dudas? Contáctanos por correo o redes sociales.</p>
-    </div>
+        <section id="contacto" class="seccion" aria-label="Sección de contacto">
+            <h2>Contacto</h2>
+            <p>¿Tienes dudas? Contáctanos por correo o redes sociales.</p>
+        </section>
+    </main>
 
     <div class="theme-switcher">
-        <button class="btn">🌙</button> 
+        <button class="btn" aria-label="Cambiar tema">🌙</button> 
     </div>
 
-    <div class="character" id="capibara">
+    <div class="character" id="capibara" aria-hidden="true">
         <div class="capibara-base"></div> 
         <div class="eye left-eye">
             <div class="pupil"></div>
@@ -63,16 +67,14 @@
         <div class="spray"></div>
     </div>
 
-    <div id="modalProducto" class="modal" style="display: none;">
+    <div id="modalProducto" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitulo" style="display: none;">
         <div class="modal-contenido">
-            <span class="cerrar" onclick="cerrarModal()">&times;</span>
+            <button class="cerrar" aria-label="Cerrar modal" onclick="cerrarModal()">&times;</button>
             <img id="modalImagen" src="" alt="" />
-            <div class="modalDetalles">
-                <h3 id="modalTitulo"></h3>
-                <p id="modalDescripcion"></p>
-                <span class="precio" id="modalPrecio"></span>
-                <p><a id="modalLink" href="#" target="_blank">Comprar en Shopee</a></p>
-            </div>
+            <h3 id="modalTitulo"></h3>
+            <p id="modalDescripcion"></p>
+            <p id="modalPrecio"></p>
+            <a id="modalLink" href="#" target="_blank" rel="noopener noreferrer" class="btn comprar">Comprar en Shopee</a>
         </div>
     </div>
 
